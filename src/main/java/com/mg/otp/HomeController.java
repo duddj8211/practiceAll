@@ -45,9 +45,12 @@ public class HomeController {
 
 		model.addAttribute("serverTime", formattedDate);
 
-		return "home";
+		return "index";
 	}
 
+	/*
+	 * OTP 관련 메소드 시작
+	 */
 	@ResponseBody
 	@RequestMapping("confirmUser")
 	public int confirmUser(HttpServletResponse response, @RequestBody Map<String, Object> param) {
@@ -61,7 +64,6 @@ public class HomeController {
 		}
 		return result;
 	}
-
 	@ResponseBody
 	@RequestMapping("checkOTP")
 	public HashMap<String, String> checkOTP(@RequestBody Map<String, String> param) {
@@ -77,9 +79,10 @@ public class HomeController {
 			checkMap = homeService.checkOTP(param);
 			if (checkMap != null) {
 				
+				resultMap.put("OTP_YN", "Y");
 			} else {
 				resultMap = otp.generate(name, host);
-				System.out.println(resultMap);
+				resultMap.put("OTP_YN", "N");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
