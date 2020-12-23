@@ -188,6 +188,13 @@
 		    <version>1.16</version>
 		</dependency>
 		
+		<!-- base32 dependency -->
+		<dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
+		    <version>1.9</version>
+		</dependency>
+		
 		
 	</dependencies>
     <build>

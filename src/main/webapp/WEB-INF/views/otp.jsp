@@ -22,8 +22,8 @@
 	
 	<!-- otp 등록창 -->
 	<div id="otpEnroll" style="display: none;">
-		<p>Secret key : <span style="color: red;"></span></p>
-		<p><img src="" /></p>
+		<p>Secret key : <span id="secretKey" style="color: red;"></span></p>
+		<p><img id="qrImg" src="" /></p>
 		<button id="qrEnroll">등록완료</button>
 	</div>
 	
@@ -64,13 +64,16 @@
 							data: JSON.stringify(param),
 							contentType: "application/json; charset=utf-8",
 							success: function(result){
-								if(result > 0 ){
-									// 발급한 otp가 있는 경우
-									// 깃 연결 테스트 푸시
+								// result에서 otp 있는지 없는지로 화면 변경
+								if(result.OTP_YN) {
+									$("#otpEnroll").css('display', 'block');
+									$("#otpCheck").css('display', 'none');
+									$("#secretKey").text(result.encodedKey);
+									$("#qrImg").attr("src", result.url);
 								} else {
-									// 발급한 otp가 없는 경우
 									
 								}
+								
 							},
 							error: function(result){
 								alert("otp check 통신 에러");
@@ -85,6 +88,9 @@
 				}
 				
 			})
+		});
+		$("#qrEnroll").click(function(){
+			
 		});
 	</script>
 </body>
