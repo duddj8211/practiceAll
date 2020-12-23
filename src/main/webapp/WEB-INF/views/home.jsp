@@ -66,7 +66,7 @@
 							success: function(result){
 								if(result > 0 ){
 									// 발급한 otp가 있는 경우
-									
+									// 깃 연결 테스트 푸시
 								} else {
 									// 발급한 otp가 없는 경우
 									
