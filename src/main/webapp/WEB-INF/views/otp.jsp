@@ -65,12 +65,15 @@
 							contentType: "application/json; charset=utf-8",
 							success: function(result){
 								// result에서 otp 있는지 없는지로 화면 변경
-								if(result.OTP_YN) {
+								if(result.OTP_YN == 'N') {
 									$("#otpEnroll").css('display', 'block');
 									$("#otpCheck").css('display', 'none');
 									$("#secretKey").text(result.encodedKey);
 									$("#qrImg").attr("src", result.url);
-								} 
+								} else {
+									$("#otpEnroll").css('display', 'none');
+									$("#otpCheck").css('display', 'block');
+								}
 							},
 							error: function(result){
 								alert("otp check 통신 에러");
@@ -115,13 +118,21 @@
 			}
 			var param = {};
 			param.id = $("#userId").val();
+			param.otpkey = $("#otpNum").val();
 			
 			$.ajax({
 				url: "checkOTP",
 				type: "post",
-				data				
+				data: JSON.stringify(param),
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+				success: function(result){
+					
+				},
+				error: function(result){
+					
+				}
 			});
-			
 		});
 	</script>
 </body>
