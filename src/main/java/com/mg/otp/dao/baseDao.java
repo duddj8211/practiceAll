@@ -38,7 +38,7 @@ public class baseDao {
 	  * @date        : KOIWARE-KJH
 	  * @description : Author
 	  */
-	public Object update(String strQueryId, Object objParams) {
+	public int update(String strQueryId, Object objParams) {
 		printQueryId(strQueryId);
 
 		return sqlSession.update(strQueryId, objParams);

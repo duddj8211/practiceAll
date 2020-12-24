@@ -14,7 +14,6 @@
 </style>
 </head>
 <body>
-<!-- member 추가 테스트 푸시 -->
 	<script>
 		function page(num) {
 			switch(num) {

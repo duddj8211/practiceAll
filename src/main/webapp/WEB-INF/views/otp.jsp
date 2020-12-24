@@ -70,10 +70,7 @@
 									$("#otpCheck").css('display', 'none');
 									$("#secretKey").text(result.encodedKey);
 									$("#qrImg").attr("src", result.url);
-								} else {
-									
-								}
-								
+								} 
 							},
 							error: function(result){
 								alert("otp check 통신 에러");
@@ -86,10 +83,44 @@
 				error:function(request,status,error){
 					alert("User check 통신 에러");
 				}
-				
-			})
+			});
 		});
 		$("#qrEnroll").click(function(){
+			var param = {}
+			param.G_OTP = $("#secretKey").text();
+			param.id = $("#userId").val();
+			
+			$.ajax({
+				url: "updateOTP",
+				type: "post",
+				data: JSON.stringify(param),
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+				success: function(result) {
+					if(result > 0){
+						$("#otpEnroll").css('display', 'none');
+						$("#otpCheck").css('display', 'block');
+					} else {
+						alert("OTP 등록 실패");
+					}
+				},
+				error: function(result) {
+					alert('OTP 등록 통신 실패');
+				}
+			});
+		});
+		$("#qrCheck").click(function(){
+			if($("#otpNum").value == ''){
+				return alert("OTP 번호를 입력하세요.");
+			}
+			var param = {};
+			param.id = $("#userId").val();
+			
+			$.ajax({
+				url: "checkOTP",
+				type: "post",
+				data				
+			});
 			
 		});
 	</script>

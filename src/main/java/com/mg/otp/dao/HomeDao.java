@@ -14,4 +14,7 @@ public class HomeDao extends baseDao{
 	public HashMap<String, Object> checkOTP(Map<String, String> param){
 		return selectOne("home.checkOTP", param);
 	}
+	public int updateOTP(Map<String, String> param) {
+		return update("home.updateOTP", param);
+	}
 }

@@ -65,6 +65,17 @@ public class HomeController {
 		return result;
 	}
 	@ResponseBody
+	@RequestMapping("updateOTP")
+	public int insertOTP(@RequestBody Map<String, String> param) {
+		int result = 0;
+		try {
+			result = homeService.updateOTP(param);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	@ResponseBody
 	@RequestMapping("checkOTP")
 	public HashMap<String, String> checkOTP(@RequestBody Map<String, String> param) {
 		HashMap<String, String> resultMap = new HashMap<String, String>();
